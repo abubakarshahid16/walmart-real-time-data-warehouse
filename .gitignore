@@ -1,0 +1,43 @@
+# Data files
+*.csv
+data/*.csv
+!data/sample/*.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Database
+*.sql~
+*.db
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+config.ini
+
+# Streamlit
+.streamlit/secrets.toml
