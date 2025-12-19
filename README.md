@@ -193,15 +193,12 @@ Contributions welcome! Please:
 4. Push to the branch
 5. Open a Pull Request
 
-## 📝 License
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
 
 ## 👨‍💻 Author
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+Abubakar
+- LinkedIn:https://www.linkedin.com/in/abubakar-shahid-90a365220/)
 
 ## 🙏 Acknowledgments
 
@@ -212,7 +209,7 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
 ## 📧 Contact
 
 For questions or collaboration:
-- Email: your.email@example.com
+- Email: abubakarshahid832@gmail.com
 - Project Link: https://github.com/yourusername/walmart-realtime-datawarehouse
 
 ---
