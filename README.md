@@ -1,62 +1,73 @@
-# Walmart Real-Time Data Warehouse with Hybrid Join Algorithm
+# Walmart Real-Time Data Warehouse with Hybrid Join
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0+-orange.svg)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.51+-red.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-A production-ready, real-time data warehouse system implementing the **Hybrid Join algorithm** for efficient stream processing. Processes 550K+ transactions with interactive dashboards and 20+ OLAP queries.
+A data-engineering project focused on building a real-time analytical warehouse for high-volume retail transactions. The system uses a **Hybrid Join** strategy to efficiently combine streaming transactional data with disk-resident master data, then exposes the warehouse through OLAP-style analysis and dashboard reporting.
 
-![Architecture](assets/architecture.png)
+![Architecture overview](docs/architecture-overview.svg)
 
-## 🚀 Key Features
+## Project Highlights
 
-- **Hybrid Join Algorithm** - Novel approach for efficient stream-to-disk data joining
-- **Real-Time ETL** - Process streaming sales data with optimized performance
-- **Star Schema** - Optimized data warehouse design for analytics
-- **Interactive Dashboard** - Streamlit-based visualization with live metrics
-- **20+ OLAP Queries** - Pre-built business intelligence queries
-- **Performance Optimizations** - RAM caching, batch commits, partitioning
+- custom Hybrid Join ETL workflow for stream-to-disk joins
+- MySQL star-schema warehouse design
+- 550,000+ transaction scale
+- Streamlit dashboard for interactive monitoring and analytics
+- 20+ OLAP-oriented analytical query patterns
+- performance-oriented loading approach with batching and optimized joins
 
-## 📊 Performance Metrics
+## Performance Snapshot
 
-- **Processing Speed**: ~1,000 transactions/second
-- **Data Volume**: 550,000+ transactions
-- **ETL Time**: 8-12 minutes for full dataset
-- **Query Response**: <2 seconds for most OLAP queries
+- Processing speed: about 1,000 transactions per second
+- Data volume: 550,000+ transactions
+- ETL runtime: about 8 to 12 minutes for a full load
+- Query response: under 2 seconds for many OLAP-style queries
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **Database**: MySQL 8.0+
-- **Backend**: Python 3.11
-- **ETL**: Hybrid Join Algorithm (custom implementation)
-- **Frontend**: Streamlit
-- **Visualization**: Plotly
-- **Libraries**: pandas, mysql-connector-python, SQLAlchemy
+| Layer | Tools |
+| --- | --- |
+| Database | MySQL 8.0+ |
+| Backend | Python 3.11 |
+| ETL | Custom Hybrid Join implementation |
+| Analytics UI | Streamlit |
+| Visualization | Plotly |
+| Data libraries | pandas, mysql-connector-python, SQLAlchemy |
 
-## 📁 Project Structure
+## Repository Structure
 
-```
-walmart-realtime-datawarehouse/
-├── src/
-│   ├── etl/hybrid_join_etl.py        # Main ETL engine
-│   └── dashboard/streamlit_app.py     # Dashboard application
-├── sql/
-│   ├── 01_create_schema.sql           # Database schema
-│   └── 02_create_views.sql            # OLAP views
-├── data/                              # Place CSV files here
-│   ├── transactional_data.csv
-│   ├── product_master_data.csv
-│   └── customer_master_data.csv
-├── notebooks/
-│   └── hybrid_join_analysis.ipynb     # Jupyter analysis
-├── docs/                              # Documentation
-└── scripts/                           # Utility scripts
+```text
+walmart-real-time-data-warehouse/
+|-- src/
+|   |-- etl/hybrid_join_etl.py
+|   `-- dashboard/streamlit_app.py
+|-- sql/
+|   |-- 01_create_schema.sql
+|   `-- 02_create_views.sql
+|-- data/
+|-- notebooks/
+|-- docs/
+`-- scripts/
 ```
 
-## ⚡ Quick Start
+## Architecture Summary
+
+The overall workflow is:
+
+1. ingest transactional and master datasets
+2. buffer streaming tuples in memory
+3. join them efficiently against disk-resident partitions using a hybrid strategy
+4. load transformed data into a star-schema warehouse
+5. serve analysis through OLAP queries and a Streamlit dashboard
+
+For more detail, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+## Quick Start
 
 ### Prerequisites
+
 - MySQL Server 8.0+
 - Python 3.11+
 - Git
@@ -64,22 +75,31 @@ walmart-realtime-datawarehouse/
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/walmart-realtime-datawarehouse.git
-cd walmart-realtime-datawarehouse
+git clone https://github.com/abubakarshahid16/walmart-real-time-data-warehouse.git
+cd walmart-real-time-data-warehouse
 
-# Install dependencies
 pip install -r requirements.txt
 
-# Setup database
 mysql -u root -p < sql/01_create_schema.sql
 mysql -u root -p BlackDW < sql/02_create_views.sql
+```
 
-# Configure database credentials
-# Edit src/etl/hybrid_join_etl.py and src/dashboard/streamlit_app.py
-# Update: host, user, password
+### Configuration
 
-# Place your data files in data/ directory
+Update database credentials in:
+
+- `src/etl/hybrid_join_etl.py`
+- `src/dashboard/streamlit_app.py`
+
+Example configuration block:
+
+```python
+DB_CONFIG = {
+    "host": "localhost",
+    "user": "root",
+    "password": "your_password",
+    "database": "BlackDW",
+}
 ```
 
 ### Run ETL
@@ -94,124 +114,66 @@ python src/etl/hybrid_join_etl.py
 streamlit run src/dashboard/streamlit_app.py
 ```
 
-Access dashboard at: http://localhost:8501
+Dashboard URL:
 
-## 📖 Documentation
-
-- [Architecture Overview](docs/ARCHITECTURE.md) - System design and data flow
-- [Database Schema](docs/DATABASE_SCHEMA.md) - Star schema documentation
-- [Setup Guide](docs/SETUP_GUIDE.md) - Detailed installation instructions
-- [User Guide](docs/USER_GUIDE.md) - Dashboard usage
-
-## 🧮 Hybrid Join Algorithm
-
-The Hybrid Join algorithm efficiently joins streaming data with disk-resident master data:
-
-```
-1. Buffer stream tuples in hash table (memory)
-2. Partition master data into disk blocks
-3. Load partition → Join with all buffered tuples
-4. Amortize disk I/O cost across multiple joins
+```text
+http://localhost:8501
 ```
 
-**Benefits**:
-- 99.6% reduction in disk I/O
-- O(1) hash table lookups
-- Fair FIFO processing
-- Scalable to large datasets
+## Hybrid Join Idea
 
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed explanation.
+The Hybrid Join approach in this project is built around:
 
-## 📊 Dashboard Features
+1. buffering stream tuples in memory
+2. partitioning master data into disk blocks
+3. loading a partition and joining it against buffered tuples
+4. amortizing disk I/O across many matches
 
-### Real-Time Monitor
-- Live transaction metrics
-- Revenue tracking
-- Customer analytics
-- Stream visualization
+Why it helps:
 
-### OLAP Analysis (20 Queries)
-- Product performance (Top N, trends)
-- Customer segmentation (demographics, behavior)
-- Temporal analysis (quarterly, seasonal)
-- Category insights (by occupation, city)
-- Store performance metrics
-- Product affinity analysis
+- fewer disk reads compared with naive repeated lookups
+- fast hash-based matching
+- better fit for high-volume analytical ingestion
 
-## 🗃️ Database Schema
+## Dashboard and Analytics
 
-**Star Schema** with 5 dimension tables and 1 fact table:
+The project supports:
 
-- **DimCustomer** - Customer demographics
-- **DimProduct** - Product catalog
-- **DimStore** - Store locations
-- **DimSupplier** - Supplier information
-- **DimDate** - Time dimension
-- **FactSales** - Transaction facts (550K+ records)
+- real-time transaction monitoring
+- revenue visibility
+- customer and product insights
+- temporal and category-based analysis
+- store and supplier performance tracking
+- OLAP-style analytical exploration
 
-## 🔧 Configuration
-
-Edit database credentials in:
-- `src/etl/hybrid_join_etl.py` (line 331)
-- `src/dashboard/streamlit_app.py` (lines 31-34)
-
-```python
-DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-    "password": "your_password",
-    "database": "BlackDW"
-}
-```
-
-## 📈 Sample Queries
+## Example Analytical Query
 
 ```sql
--- Top 5 Products by Revenue
 SELECT p.Product_ID, SUM(fs.Revenue) AS TotalRevenue
 FROM FactSales fs
 JOIN DimProduct p ON fs.ProductKey = p.ProductKey
 GROUP BY p.Product_ID
 ORDER BY TotalRevenue DESC
 LIMIT 5;
-
--- Monthly Sales Growth
-SELECT d.Year, d.Month, 
-       SUM(fs.Revenue) AS MonthlyRevenue
-FROM FactSales fs
-JOIN DimDate d ON fs.DateKey = d.DateKey
-GROUP BY d.Year, d.Month
-ORDER BY d.Year, d.Month;
 ```
 
-## 🤝 Contributing
+## Why This Project Matters
 
-Contributions welcome! Please:
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+This repository is a strong portfolio project because it demonstrates:
 
+- data warehouse design
+- ETL pipeline implementation
+- performance-aware data processing
+- analytical schema design
+- dashboard-based reporting
+- practical data-engineering thinking beyond basic notebooks
 
+## Author
 
-## 👨‍💻 Author
+Abubakar Shahid  
+GitHub: <https://github.com/abubakarshahid16>  
+LinkedIn: <https://www.linkedin.com/in/abubakar-shahid-90a365220/>
 
-Abubakar
-- LinkedIn:https://www.linkedin.com/in/abubakar-shahid-90a365220/)
+## License
 
-## 🙏 Acknowledgments
-
-- Built as part of Data Warehouse course project
-- Implements concepts from database research papers
-- Inspired by real-world streaming ETL systems
-
-## 📧 Contact
-
-For questions or collaboration:
-- Email: abubakarshahid832@gmail.com
-- Project Link: https://github.com/yourusername/walmart-realtime-datawarehouse
-
----
-
-⭐ **Star this repo if you find it useful!**
+This project is licensed under the MIT License.

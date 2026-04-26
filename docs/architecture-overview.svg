@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Walmart Real-Time Data Warehouse Architecture</title>
+  <desc id="desc">A high-level architecture diagram showing source datasets feeding a hybrid-join ETL engine, loading a star-schema warehouse, and powering Streamlit analytics.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f5f7fb"/>
+      <stop offset="100%" stop-color="#eef7f4"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f7fbff"/>
+    </linearGradient>
+    <style>
+      .title { font: 700 34px 'Segoe UI', Arial, sans-serif; fill: #123d5b; }
+      .subtitle { font: 400 17px 'Segoe UI', Arial, sans-serif; fill: #4d6b7f; }
+      .card-title { font: 700 20px 'Segoe UI', Arial, sans-serif; fill: #123d5b; }
+      .card-text { font: 400 15px 'Segoe UI', Arial, sans-serif; fill: #38566e; }
+      .small { font: 400 14px 'Segoe UI', Arial, sans-serif; fill: #5c788c; }
+      .outline { stroke: #d7e1ea; stroke-width: 2; }
+      .line { stroke: #5a7c94; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#5a7c94"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="720" fill="url(#bg)"/>
+
+  <text x="60" y="70" class="title">Walmart Real-Time Data Warehouse</text>
+  <text x="60" y="105" class="subtitle">Streaming ETL with a hybrid join strategy, star-schema storage, and dashboard analytics.</text>
+
+  <rect x="60" y="180" rx="22" ry="22" width="240" height="220" fill="url(#card)" class="outline"/>
+  <text x="95" y="235" class="card-title">Source Data</text>
+  <text x="95" y="270" class="card-text">Transactional sales stream</text>
+  <text x="95" y="295" class="card-text">Product master data</text>
+  <text x="95" y="320" class="card-text">Customer master data</text>
+  <text x="95" y="345" class="card-text">Supplier and store attributes</text>
+
+  <rect x="370" y="150" rx="22" ry="22" width="300" height="280" fill="url(#card)" class="outline"/>
+  <text x="410" y="205" class="card-title">Hybrid Join ETL Engine</text>
+  <text x="410" y="240" class="card-text">Buffer streaming tuples</text>
+  <text x="410" y="265" class="card-text">Hash-join against disk partitions</text>
+  <text x="410" y="290" class="card-text">Transform sales and dimensions</text>
+  <text x="410" y="315" class="card-text">Batch commits and performance tuning</text>
+  <text x="410" y="340" class="card-text">Load analytics-ready warehouse tables</text>
+
+  <rect x="760" y="150" rx="22" ry="22" width="320" height="220" fill="url(#card)" class="outline"/>
+  <text x="800" y="205" class="card-title">Warehouse Layer</text>
+  <text x="800" y="240" class="card-text">MySQL star schema</text>
+  <text x="800" y="265" class="card-text">FactSales table</text>
+  <text x="800" y="290" class="card-text">Customer, Product, Store, Supplier, Date dimensions</text>
+  <text x="800" y="315" class="card-text">OLAP-ready analytical views</text>
+
+  <rect x="760" y="430" rx="22" ry="22" width="320" height="180" fill="url(#card)" class="outline"/>
+  <text x="800" y="485" class="card-title">Analytics Output</text>
+  <text x="800" y="520" class="card-text">Streamlit dashboard</text>
+  <text x="800" y="545" class="card-text">Revenue and customer insights</text>
+  <text x="800" y="570" class="card-text">20+ OLAP query patterns</text>
+
+  <rect x="370" y="500" rx="22" ry="22" width="300" height="110" fill="url(#card)" class="outline"/>
+  <text x="410" y="555" class="card-title">Docs and Notebooks</text>
+  <text x="410" y="580" class="card-text">Architecture notes and analysis support</text>
+
+  <path d="M300 290 L370 290" class="line"/>
+  <path d="M670 260 L760 260" class="line"/>
+  <path d="M920 370 L920 430" class="line"/>
+  <path d="M520 430 L520 500" class="line"/>
+
+  <text x="60" y="670" class="small">The repository centers on a hybrid join ETL approach for efficient real-time analytical processing.</text>
+</svg>
