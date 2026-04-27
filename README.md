@@ -9,6 +9,12 @@ A data-engineering project focused on building a real-time analytical warehouse 
 
 ![Architecture overview](docs/architecture-overview.svg)
 
+## Demo Video
+
+Watch the project walkthrough here:
+
+- [Walmart Real-Time Data Warehouse Demo](https://youtu.be/tNXZprHzTZE?si=Bs3EmtmVa2eURvFX)
+
 ## Project Highlights
 
 - custom Hybrid Join ETL workflow for stream-to-disk joins
