@@ -5,24 +5,61 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.51+-red.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-A data-engineering project focused on building a real-time analytical warehouse for high-volume retail transactions. The system uses a **Hybrid Join** strategy to efficiently combine streaming transactional data with disk-resident master data, then exposes the warehouse through OLAP-style analysis and dashboard reporting.
+A production-style retail analytics project that ingests high-volume transactions, joins them efficiently with master data using a Hybrid Join strategy, and serves warehouse metrics through OLAP-style reporting and a Streamlit dashboard.
 
 ![Architecture overview](docs/architecture-overview.svg)
 
 ## Demo Video
 
-Watch the project walkthrough here:
-
 - [Walmart Real-Time Data Warehouse Demo](https://youtu.be/tNXZprHzTZE?si=Bs3EmtmVa2eURvFX)
 
-## Project Highlights
+## Quick Proof Links
 
-- custom Hybrid Join ETL workflow for stream-to-disk joins
+- [Architecture notes](docs/ARCHITECTURE.md)
+- [ETL pipeline](src/etl/hybrid_join_etl.py)
+- [Dashboard app](src/dashboard/streamlit_app.py)
+- [Schema setup](sql/01_create_schema.sql)
+- [Views setup](sql/02_create_views.sql)
+
+## Executive Summary
+
+- Problem: large retail systems need fresh analytical data without expensive row-by-row joins.
+- Solution: stream transactions, probe disk-resident master data through a Hybrid Join workflow, and load a star-schema warehouse for OLAP analysis.
+- Proof: runnable ETL code, MySQL schema, Streamlit dashboard, architecture documentation, and demo video.
+- Outcome: fast warehouse loading, dashboard-ready metrics, and a project structure closer to real data-engineering work than a notebook-only exercise.
+
+## What Problem This Solves
+
+Retail organizations generate high transaction volumes, but their analytical systems still need:
+
+- reliable product and customer enrichment
+- fast warehouse loading
+- dimensional modeling for reporting
+- dashboard-friendly aggregates
+- query performance that stays usable as volume grows
+
+Naive enrichment approaches can become slow because each incoming transaction may require repeated master-data lookups. This project addresses that by using a Hybrid Join design to reduce unnecessary disk access while still loading a structured warehouse.
+
+## Why This Repo Is Strong
+
+This repository demonstrates a practical real-time analytics workflow:
+
+- transaction ingestion and buffering
+- Hybrid Join processing for stream-to-disk enrichment
 - MySQL star-schema warehouse design
-- 550,000+ transaction scale
-- Streamlit dashboard for interactive monitoring and analytics
-- 20+ OLAP-oriented analytical query patterns
-- performance-oriented loading approach with batching and optimized joins
+- ETL batching and commit optimization
+- Streamlit-based analytical monitoring
+- OLAP-style query patterns for reporting and exploration
+
+## Visual Proof
+
+### Dashboard preview
+
+![Dashboard preview](docs/dashboard-preview.svg)
+
+### Performance snapshot
+
+![Performance snapshot](docs/performance-snapshot.svg)
 
 ## Performance Snapshot
 
@@ -68,7 +105,44 @@ The overall workflow is:
 4. load transformed data into a star-schema warehouse
 5. serve analysis through OLAP queries and a Streamlit dashboard
 
-For more detail, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+For deeper detail, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+## Hybrid Join Idea
+
+The Hybrid Join approach in this project is built around:
+
+1. buffering stream tuples in memory
+2. partitioning master data into disk blocks
+3. loading a partition and joining it against buffered tuples
+4. amortizing disk I/O across many matches
+
+Why it helps:
+
+- fewer disk reads compared with naive repeated lookups
+- fast hash-based matching
+- better fit for high-volume analytical ingestion
+
+## Dashboard and Analytics
+
+The project supports:
+
+- real-time transaction monitoring
+- revenue visibility
+- customer and product insights
+- temporal and category-based analysis
+- store and supplier performance tracking
+- OLAP-style analytical exploration
+
+## Example Analytical Query
+
+```sql
+SELECT p.Product_ID, SUM(fs.Revenue) AS TotalRevenue
+FROM FactSales fs
+JOIN DimProduct p ON fs.ProductKey = p.ProductKey
+GROUP BY p.Product_ID
+ORDER BY TotalRevenue DESC
+LIMIT 5;
+```
 
 ## Quick Start
 
@@ -126,42 +200,17 @@ Dashboard URL:
 http://localhost:8501
 ```
 
-## Hybrid Join Idea
+## Implementation Positioning
 
-The Hybrid Join approach in this project is built around:
+This repository demonstrates the data model, ETL logic, Hybrid Join strategy, and dashboard layer required for a retail analytics warehouse.
 
-1. buffering stream tuples in memory
-2. partitioning master data into disk blocks
-3. loading a partition and joining it against buffered tuples
-4. amortizing disk I/O across many matches
+In a more production-oriented deployment, the same architecture could be extended with:
 
-Why it helps:
-
-- fewer disk reads compared with naive repeated lookups
-- fast hash-based matching
-- better fit for high-volume analytical ingestion
-
-## Dashboard and Analytics
-
-The project supports:
-
-- real-time transaction monitoring
-- revenue visibility
-- customer and product insights
-- temporal and category-based analysis
-- store and supplier performance tracking
-- OLAP-style analytical exploration
-
-## Example Analytical Query
-
-```sql
-SELECT p.Product_ID, SUM(fs.Revenue) AS TotalRevenue
-FROM FactSales fs
-JOIN DimProduct p ON fs.ProductKey = p.ProductKey
-GROUP BY p.Product_ID
-ORDER BY TotalRevenue DESC
-LIMIT 5;
-```
+- Kafka or another event stream for live ingestion
+- Airflow or Dagster orchestration
+- stronger observability and retry handling
+- containerized deployment for ETL and dashboard services
+- warehouse migration toward distributed storage or compute as scale grows
 
 ## Why This Project Matters
 

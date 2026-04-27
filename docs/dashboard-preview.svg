@@ -1,0 +1,38 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" rx="28" fill="#F5F1EA"/>
+  <rect x="42" y="36" width="1196" height="648" rx="24" fill="#FBFBFC" stroke="#D8D5CD" stroke-width="2"/>
+  <text x="78" y="92" fill="#1F2733" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Dashboard Preview</text>
+  <text x="78" y="126" fill="#66707D" font-family="Segoe UI, Arial, sans-serif" font-size="18">A mock view of the Streamlit monitoring layer used for warehouse analytics.</text>
+  <rect x="78" y="166" width="240" height="108" rx="18" fill="#1E7B63"/>
+  <rect x="338" y="166" width="240" height="108" rx="18" fill="#264F9E"/>
+  <rect x="598" y="166" width="240" height="108" rx="18" fill="#B1602F"/>
+  <rect x="858" y="166" width="300" height="108" rx="18" fill="#473E8E"/>
+  <text x="102" y="210" fill="#EFFDF8" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Transactions</text>
+  <text x="102" y="244" fill="#EFFDF8" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">550K+</text>
+  <text x="362" y="210" fill="#EFF5FF" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">ETL Runtime</text>
+  <text x="362" y="244" fill="#EFF5FF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">8-12 min</text>
+  <text x="622" y="210" fill="#FFF5EE" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Throughput</text>
+  <text x="622" y="244" fill="#FFF5EE" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">~1K tx/sec</text>
+  <text x="882" y="210" fill="#F2EEFF" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Query Response</text>
+  <text x="882" y="244" fill="#F2EEFF" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">&lt;2 sec</text>
+  <rect x="78" y="304" width="670" height="316" rx="20" fill="#FFFFFF" stroke="#DBE0E5" stroke-width="2"/>
+  <rect x="778" y="304" width="380" height="316" rx="20" fill="#FFFFFF" stroke="#DBE0E5" stroke-width="2"/>
+  <text x="108" y="344" fill="#1F2733" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Revenue Trend</text>
+  <path d="M118 556C196 520 218 504 288 472C348 444 410 460 468 408C534 348 582 366 638 320C666 298 684 284 718 278" stroke="#1E7B63" stroke-width="6" stroke-linecap="round"/>
+  <path d="M118 556H718" stroke="#BBC5CF" stroke-width="2"/>
+  <path d="M118 556V374" stroke="#BBC5CF" stroke-width="2"/>
+  <circle cx="288" cy="472" r="7" fill="#1E7B63"/>
+  <circle cx="468" cy="408" r="7" fill="#1E7B63"/>
+  <circle cx="638" cy="320" r="7" fill="#1E7B63"/>
+  <text x="808" y="344" fill="#1F2733" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Top Categories</text>
+  <rect x="820" y="388" width="240" height="22" rx="11" fill="#DCE9F6"/>
+  <rect x="820" y="388" width="206" height="22" rx="11" fill="#264F9E"/>
+  <rect x="820" y="436" width="240" height="22" rx="11" fill="#F2E3D8"/>
+  <rect x="820" y="436" width="180" height="22" rx="11" fill="#B1602F"/>
+  <rect x="820" y="484" width="240" height="22" rx="11" fill="#E6E0FB"/>
+  <rect x="820" y="484" width="158" height="22" rx="11" fill="#473E8E"/>
+  <text x="820" y="378" fill="#66707D" font-family="Segoe UI, Arial, sans-serif" font-size="16">Grocery</text>
+  <text x="820" y="426" fill="#66707D" font-family="Segoe UI, Arial, sans-serif" font-size="16">Electronics</text>
+  <text x="820" y="474" fill="#66707D" font-family="Segoe UI, Arial, sans-serif" font-size="16">Home Goods</text>
+  <text x="78" y="652" fill="#66707D" font-family="Segoe UI, Arial, sans-serif" font-size="16">Purpose: show how ETL output becomes dashboard-ready metrics for analysts and operators.</text>
+</svg>

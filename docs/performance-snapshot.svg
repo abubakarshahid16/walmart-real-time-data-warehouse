@@ -1,0 +1,24 @@
+<svg width="1280" height="660" viewBox="0 0 1280 660" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="660" rx="28" fill="#EDF2F0"/>
+  <rect x="46" y="42" width="1188" height="576" rx="24" fill="#FFFFFF" stroke="#D4DDD8" stroke-width="2"/>
+  <text x="82" y="96" fill="#1F2733" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Performance Snapshot</text>
+  <text x="82" y="130" fill="#62707A" font-family="Segoe UI, Arial, sans-serif" font-size="18">A quick visual summary of throughput, scale, and warehouse usability.</text>
+  <rect x="82" y="178" width="246" height="166" rx="20" fill="#173F36"/>
+  <rect x="354" y="178" width="246" height="166" rx="20" fill="#23476F"/>
+  <rect x="626" y="178" width="246" height="166" rx="20" fill="#8F4A27"/>
+  <rect x="898" y="178" width="246" height="166" rx="20" fill="#3C317C"/>
+  <text x="108" y="230" fill="#E8FFF7" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Transactions</text>
+  <text x="108" y="286" fill="#E8FFF7" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">550K+</text>
+  <text x="380" y="230" fill="#EEF6FF" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Throughput</text>
+  <text x="380" y="286" fill="#EEF6FF" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">~1K tx/sec</text>
+  <text x="652" y="230" fill="#FFF3EC" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Full ETL Load</text>
+  <text x="652" y="286" fill="#FFF3EC" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">8-12 min</text>
+  <text x="924" y="230" fill="#F4EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">OLAP Queries</text>
+  <text x="924" y="286" fill="#F4EFFF" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">&lt;2 sec</text>
+  <rect x="82" y="388" width="1062" height="158" rx="20" fill="#F6F8F9" stroke="#DDE3E7" stroke-width="2"/>
+  <text x="112" y="434" fill="#1F2733" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Why the numbers matter</text>
+  <text x="112" y="474" fill="#62707A" font-family="Segoe UI, Arial, sans-serif" font-size="18">The project is not just a schema exercise. It shows ingestion scale, ETL discipline, and practical dashboard responsiveness.</text>
+  <text x="112" y="512" fill="#62707A" font-family="Segoe UI, Arial, sans-serif" font-size="18">That combination makes the repo stronger as a data-engineering case study than a notebook-only analytics project.</text>
+  <rect x="112" y="558" width="870" height="10" rx="5" fill="#D6E0DB"/>
+  <rect x="112" y="558" width="712" height="10" rx="5" fill="#4FAE8D"/>
+</svg>
