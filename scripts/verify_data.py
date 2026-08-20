@@ -1,14 +1,26 @@
+import os
+
 import pandas as pd
 import mysql.connector
 
 # ==============================================================================
 # CONFIGURATION
 # ==============================================================================
+def required_env(name):
+    value = os.getenv(name)
+    if not value:
+        raise RuntimeError(
+            f"Missing required environment variable: {name}. "
+            "Copy .env.example to .env and load it before running this script."
+        )
+    return value
+
+
 DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-    "password": "abubakar123",  
-    "database": "BlackDW"
+    "host": os.getenv("MYSQL_HOST", "localhost"),
+    "user": os.getenv("MYSQL_USER", "root"),
+    "password": required_env("MYSQL_PASSWORD"),
+    "database": os.getenv("MYSQL_DATABASE", "BlackDW"),
 }
 
 PATHS = {
